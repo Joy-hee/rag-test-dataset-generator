@@ -9,3 +9,13 @@ torch==1.13.1
 # Additional Libraries
 scikit-learn==1.2.0
 tqdm==4.64.1
+
+# for chart and pic
+pdfplumber
+pdf2image
+pillow
+pytesseract
+opencv-python
+openai
+python-dotenv
+beautifulsoup4
