@@ -1,0 +1,18 @@
+# Azure OpenAI Configuration for GPT-5 Deployment
+
+azure:
+  openai:
+    model: gpt-5
+    endpoint: https://<your-endpoint>.openai.azure.com/
+    key: <your-api-key>
+
+# Document Processing Parameters
+
+document_processing:
+  enabled: true
+  timeout: 300
+  max_tokens: 4096
+  prompts:
+    - "Please summarize this document."
+    - "Highlight key insights from the text.
+"
