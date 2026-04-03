@@ -1,6 +1,9 @@
 import os
 import pdfplumber
 from bs4 import BeautifulSoup
+import pdfplumber
+import cv2
+import numpy as np
 
 class DocumentProcessor:
     def __init__(self):
@@ -37,3 +40,38 @@ class DocumentProcessor:
     def _extract_page_numbers(self, soup):
         """Placeholder for page number extraction logic from HTML soup."""
         return []  # This might depend on your specific needs and HTML structure.
+
+class PdfProcessor:
+    def __init__(self, pdf_path):
+        self.pdf_path = pdf_path
+
+    def extract_text(self):
+        text = ''
+        with pdfplumber.open(self.pdf_path) as pdf:
+            for page in pdf.pages:
+                text += page.extract_text() or ''
+        return text
+
+    def extract_images(self):
+        images = []
+        with pdfplumber.open(self.pdf_path) as pdf:
+            for page in pdf.pages:
+                for img in page.images:
+                    image = pdf.images[img['index']]
+                    images.append(image)
+        return images
+
+    def detect_charts(self):
+        charts = []
+        with pdfplumber.open(self.pdf_path) as pdf:
+            for page in pdf.pages:
+                # Placeholder for chart detection logic
+                image = np.zeros((100, 100, 3), dtype=np.uint8)  # Dummy image for example
+                charts.append(image)
+        return charts
+
+    def process_document(self):
+        text = self.extract_text()
+        images = self.extract_images()
+        charts = self.detect_charts()
+        return text, images, charts
